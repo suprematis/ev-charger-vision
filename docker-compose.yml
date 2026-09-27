@@ -1,7 +1,7 @@
 services:
   jupyterlab:
     image: quay.io/jupyter/scipy-notebook:latest
-    container_name: jupyter-study-lab
+    container_name: ev-charger-vision
     restart: unless-stopped
     ports:
       - "8888:8888"
@@ -19,5 +19,5 @@ services:
     user: root
     volumes:
       # Mount your local notebooks folder to the default notebook directory
-      - ./notebooks:/home/jovyan/work
+      - ./:/home/jovyan/work
     working_dir: /home/jovyan/work
