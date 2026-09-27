@@ -1,0 +1,23 @@
+services:
+  jupyterlab:
+    image: quay.io/jupyter/scipy-notebook:latest
+    container_name: jupyter-study-lab
+    restart: unless-stopped
+    ports:
+      - "8888:8888"
+    dns:
+      - 8.8.8.8
+      - 1.1.1.1
+    environment:
+      # Sets a static token for easy browser login (change to whatever you prefer)
+      - DOCKER_STACKS_JUPYTER_CMD=lab
+      - JUPYTER_TOKEN=vision-analysis-ev
+      # Grant full read/write permissions to mounted host volume
+      - CHOWN_HOME=yes
+      - CHOWN_HOME_OPTS=-R
+      - GRANT_SUDO=yes
+    user: root
+    volumes:
+      # Mount your local notebooks folder to the default notebook directory
+      - ./notebooks:/home/jovyan/work
+    working_dir: /home/jovyan/work
